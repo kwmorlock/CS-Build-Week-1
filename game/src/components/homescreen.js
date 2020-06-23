@@ -7,7 +7,7 @@ const HomeScreen = () => {
     <>
 
       <h1 className="Game-title">
-        Game
+      John Conway's "Game of Life"
     
       </h1>
       <div>
