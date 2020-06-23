@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 // import './App.css';
 import HomeScreen from "./components/homescreen";
 
-const numberRows = 100;
-const numberColumns = 100;
+const numberRows = 75;
+const numberColumns = 75;
 
 function App() {
   const [board, setBoard] = useState(() => {
