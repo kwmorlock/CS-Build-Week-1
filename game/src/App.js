@@ -17,11 +17,14 @@ function App() {
 
   // console.log(board)
   return (
-    <div className="App">
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: `repeat(${numberColumns}, 18px`
+    }}>
       {board.map((rows, r) =>
          rows.map((columns, c) => (
          <div
-         key={`${r}-${c}`}
+         key={`${r}-${c}`} //needs key for array, its ok to use the index as a key, because we arent going to shift the divs
           style={{
             width:20,
             height: 20,
