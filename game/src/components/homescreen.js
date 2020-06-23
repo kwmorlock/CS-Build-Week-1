@@ -14,6 +14,7 @@ const HomeScreen = () => {
        
           
             <p className="home-screen">Rules:</p>
+            <button>Start</button>
 
           </div>
    
