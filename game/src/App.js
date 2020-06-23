@@ -15,10 +15,21 @@ function App() {
     return rows;
   })
 
-  console.log(board)
+  // console.log(board)
   return (
     <div className="App">
-      checking
+      {board.map((rows, r) =>
+         rows.map((columns, c) => (
+         <div
+         key={`${r}-${c}`}
+          style={{
+            width:20,
+            height: 20,
+            backgroundColor: board[r][c] ? 'pink' : undefined,
+            border: "solid 1px black"
+          }}
+          />))
+      )}
  {/* <HomeScreen /> */}
     </div>
   );
