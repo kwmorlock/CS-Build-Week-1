@@ -1,0 +1,22 @@
+body {
+    background-color: hotpink;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.home-screen {
+    display: flex;
+    justify-content: center;
+}
+
+.startbutton {
+    margin-left: 39%;
+    width: 20%;
+    height: 40px;
+    background-color: black;
+    color: hotpink;
+    font-size:  2rem;
+}

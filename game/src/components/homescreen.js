@@ -1,4 +1,5 @@
 import React from "react";
+import './homescreen.css';
 
 
 const HomeScreen = () => {
@@ -6,15 +7,15 @@ const HomeScreen = () => {
   return (
     <>
 
-      <h1 className="Game-title">
+      <h1 class="Game-title">
       John Conway's "Game of Life"
     
       </h1>
       <div>
        
           
-            <p className="home-screen">Rules:</p>
-            <button>Start</button>
+            <p class="home-screen">Rules:</p>
+            <button class="startbutton">Start</button>
 
           </div>
    
