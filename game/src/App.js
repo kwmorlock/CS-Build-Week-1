@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import HomeScreen from "./components/homescreen";
-import produce from 'immer';
+import produce from 'immer'; //
 
 const numberRows = 75;
 const numberColumns = 75;
@@ -18,6 +18,8 @@ function App() {
 
   // console.log(board)
   return (
+    <>
+    <button>Start</button>
     <div style={{
       display: 'grid',
       gridTemplateColumns: `repeat(${numberColumns}, 20px`
@@ -27,8 +29,8 @@ function App() {
          <div
          key={`${r}-${c}`} //needs key for array, its ok to use the index as a key, because we arent going to shift the divs
           onClick={() => {
-            const newBoard = produce(board, boardcopy => {
-              boardcopy[r][c] = 1
+            const newBoard = produce(board, boardcopy => { //boardcopy we can alter in anyway we want
+              boardcopy[r][c] = board[r][c] ? 0 : 1; //this allows a toggle, so if alive can make dead
             })
           setBoard(newBoard)
           }}
@@ -42,6 +44,7 @@ function App() {
       )}
  {/* <HomeScreen /> */}
     </div>
+    </>
   );
 }
 
