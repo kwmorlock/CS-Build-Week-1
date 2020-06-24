@@ -75,7 +75,7 @@ setBoard((g) => {
   }
 });
 });
-setTimeout(runSimulation, 1000);
+setTimeout(runSimulation, 2000);
   }, [])
   // console.log(board)
   return (
@@ -107,6 +107,12 @@ setBoard(generateEmptyBoard())
  setBoard(rows);
   }}>
     PROMETHEUS
+  </button>
+
+  <button onClick ={() =>{ //generations are increasing quicker
+    setTimeout(runSimulation(), 1)
+  }}> Fast
+
   </button>
 
   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
