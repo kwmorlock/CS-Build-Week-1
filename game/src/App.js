@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import HomeScreen from "./components/homescreen";
+import produce from 'immer';
 
 const numberRows = 75;
 const numberColumns = 75;
@@ -19,16 +20,22 @@ function App() {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: `repeat(${numberColumns}, 18px`
+      gridTemplateColumns: `repeat(${numberColumns}, 20px`
     }}>
       {board.map((rows, r) =>
          rows.map((columns, c) => (
          <div
          key={`${r}-${c}`} //needs key for array, its ok to use the index as a key, because we arent going to shift the divs
-          style={{
+          onClick={() => {
+            const newBoard = produce(board, boardcopy => {
+              boardcopy[r][c] = 1
+            })
+          setBoard(newBoard)
+          }}
+         style={{
             width:20,
             height: 20,
-            backgroundColor: board[r][c] ? 'pink' : undefined,
+            backgroundColor: board[r][c] ? 'purple' : undefined,
             border: "solid 1px black"
           }}
           />))
