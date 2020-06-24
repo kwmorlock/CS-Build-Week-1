@@ -95,6 +95,10 @@ setBoard(generateEmptyBoard())
     PROMETHEUS
   </button>
 
+  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+    <button>TRY THIS</button>
+</a>
+
 
     <div style={{
       display: 'grid',
