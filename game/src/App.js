@@ -18,13 +18,18 @@ const operations = [ //for all the spaces surrounding a space
   [-1, 0],
 ]
 
-function App() {
-  const [board, setBoard] = useState(() => {
-    const rows = [];
+const generateEmptyBoard = () => {
+  const rows = [];
     for (let i = 0; i < numberRows; i++){ //rows for the grid
     rows.push(Array.from(Array(numberColumns), () => 0)) //pushing a column which is an array, by default everything will be dead which is why 0, and if 1 that means its alive
     }
     return rows;
+  }
+
+
+function App() {
+  const [board, setBoard] = useState(() => {
+    return generateEmptyBoard()
   })
 
   const [playgod, setPlayGod] = useState(false);
@@ -74,6 +79,13 @@ setTimeout(runSimulation, 1000);
       }
     }}
     >{playgod ? 'STOP PLAYING GOD' : 'PLAY GOD'} </button>
+  <button onClick={() => {
+setBoard(generateEmptyBoard())
+  }}>
+    DESTROY
+  </button>
+
+
     <div style={{
       display: 'grid',
       gridTemplateColumns: `repeat(${numberColumns}, 20px`
