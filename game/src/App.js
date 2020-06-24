@@ -16,10 +16,15 @@ function App() {
     return rows;
   })
 
+  const [playgod, setPlayGod] = useState(false);
   // console.log(board)
   return (
     <>
-    <button>Start</button>
+    <button
+    onClick={() => { //onclick added to toggle button between two button settings
+      setPlayGod(!playgod);
+    }}
+    >{playgod ? 'STOP PLAYING GOD' : 'PLAY GOD'} </button>
     <div style={{
       display: 'grid',
       gridTemplateColumns: `repeat(${numberColumns}, 20px`
