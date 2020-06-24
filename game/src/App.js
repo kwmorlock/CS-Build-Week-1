@@ -43,7 +43,13 @@ setBoard((g) => {
     for(let i = 0; i < numberRows; i++) {
       for(let k = 0; k < numberColumns; k++) {
         let friends = 0;
-        }
+        operations.forEach(([x, y]) => {
+          const newI = i + x;
+          const newK = k + y;
+          if (newI >= 0 && newI < numberRows && newK >= 0 && newK < numberColumns) { //checking to make sure we cant go below or above what we can
+            friends += g[newI][newK] //if we have a live cell equal to 1 it will add 1 to the neighbors, lets us know how many neighbors
+          }
+        })
     }
   }
 });
