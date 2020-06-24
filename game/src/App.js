@@ -7,6 +7,17 @@ import produce from 'immer'; //
 const numberRows = 75;
 const numberColumns = 75;
 
+const operations = [ //for all the spaces surrounding a space
+  [0, 1],
+  [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
+  [1, 0],
+  [-1, 0],
+]
+
 function App() {
   const [board, setBoard] = useState(() => {
     const rows = [];
@@ -27,6 +38,16 @@ function App() {
 if(!playgod.current){
   return;
 }
+setBoard((g) => {
+  return  produce(g, boardCopy => {
+    for(let i = 0; i < numberRows; i++) {
+      for(let k = 0; k < numberColumns; k++) {
+        let friends = 0;
+        }
+    }
+  }
+});
+});
 setTimeout(runSimulation, 1000);
   }, [])
   // console.log(board)
