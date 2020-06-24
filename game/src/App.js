@@ -96,7 +96,7 @@ setTimeout(runSimulation, 2000);
   <button onClick={() => {
 setBoard(generateEmptyBoard())
   }}>
-    DESTROY
+    HADES
   </button>
 
   <button onClick={() => {
@@ -111,9 +111,16 @@ setBoard(generateEmptyBoard())
 
   <button onClick ={() =>{ //generations are increasing quicker
     setTimeout(runSimulation(), 1)
-  }}> Fast
+  }}> HERMES
 
   </button>
+
+  {/* <button onClick ={() =>{ 
+  
+    
+  }}> BOARD TEST
+
+  </button> */}
 
   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
     <button>TRY THIS</button>
