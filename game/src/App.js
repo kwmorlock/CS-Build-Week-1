@@ -28,10 +28,15 @@ const generateEmptyBoard = () => {
   }
 
 
+
 function App() {
   const [board, setBoard] = useState(() => {
     return generateEmptyBoard()
   })
+
+  const [generations, setGenerations] = useState(0); //for generations
+  const generationsRef = useRef(generations); //using useRef hook to current generation value
+  generationsRef.current = generations
 
   const [playgod, setPlayGod] = useState(false);
 
@@ -44,6 +49,11 @@ function App() {
 if(!playgodRef.current){
   return;
 }
+
+setGenerations((count) =>{ //mapping through the count, and for every generation made we will add plus 1, count is just a counter
+  return (count = count +1)
+})
+
 setBoard((g) => {
   return  produce(g, boardCopy => { //going to go through current board g, every cell in it
     for(let i = 0; i < numberRows; i++) {
@@ -70,6 +80,8 @@ setTimeout(runSimulation, 1000);
   // console.log(board)
   return (
     <>
+    <h1>Generations: {generations}</h1>
+
     <div class="btn">
     <button
     onClick={() => { //onclick added to toggle button between two button settings
