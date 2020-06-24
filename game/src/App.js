@@ -85,6 +85,16 @@ setBoard(generateEmptyBoard())
     DESTROY
   </button>
 
+  <button onClick={() => {
+ const rows = [];
+ for (let i = 0; i < numberRows; i++){ //rows for the grid
+ rows.push(Array.from(Array(numberColumns), () => Math.random() >.5 ? 1 : 0)) //pushing a column which is an array, by default everything will be dead which is why 0, and if 1 that means its alive
+ }
+ setBoard(rows);
+  }}>
+    PROMETHEUS
+  </button>
+
 
     <div style={{
       display: 'grid',
