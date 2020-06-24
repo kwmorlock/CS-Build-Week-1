@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback, useRef} from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import HomeScreen from "./components/homescreen";
@@ -17,6 +17,18 @@ function App() {
   })
 
   const [playgod, setPlayGod] = useState(false);
+
+  const playgodRef = useRef(playgod); //keeps current value in a callback
+  playgodRef.current = playgod
+
+  const runSimulation = useCallback(() => { //empty array so function is only created once
+//useCallback is imported from react
+//simulate
+if(!playgod.current){
+  return;
+}
+setTimeout(runSimulation, 1000);
+  }, [])
   // console.log(board)
   return (
     <>
