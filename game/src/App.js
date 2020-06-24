@@ -35,14 +35,14 @@ function App() {
   const runSimulation = useCallback(() => { //empty array so function is only created once
 //useCallback is imported from react
 //simulate
-if(!playgod.current){
+if(!playgodRef.current){
   return;
 }
 setBoard((g) => {
-  return  produce(g, boardCopy => {
+  return  produce(g, boardCopy => { //going to go through current board g, every cell in it
     for(let i = 0; i < numberRows; i++) {
       for(let k = 0; k < numberColumns; k++) {
-        let friends = 0;
+        let friends = 0; //compute the number of neighbors it has
         operations.forEach(([x, y]) => {
           const newI = i + x;
           const newK = k + y;
@@ -50,6 +50,11 @@ setBoard((g) => {
             friends += g[newI][newK] //if we have a live cell equal to 1 it will add 1 to the neighbors, lets us know how many neighbors
           }
         })
+        if (friends < 2 || friends > 3) { //once we check how many neighbors we apply this condition, and this decides what happens to a cell
+          boardCopy[i][k] = 0;
+        } else if (g[i][k] === 0 && friends === 3) {
+          boardCopy[i][k] = 1;
+        }
     }
   }
 });
@@ -62,6 +67,11 @@ setTimeout(runSimulation, 1000);
     <button
     onClick={() => { //onclick added to toggle button between two button settings
       setPlayGod(!playgod);
+      if (!playgod){
+
+      playgodRef.current = true;
+      runSimulation()
+      }
     }}
     >{playgod ? 'STOP PLAYING GOD' : 'PLAY GOD'} </button>
     <div style={{
