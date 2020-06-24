@@ -1,8 +1,9 @@
 import React, {useState, useCallback, useRef} from 'react';
 // import logo from './logo.svg';
 // import './App.css';
-import HomeScreen from "./components/homescreen";
+// import HomeScreen from "./components/homescreen";
 import produce from 'immer'; //
+import '../src/components/homescreen.css';
 
 const numberRows = 75;
 const numberColumns = 75;
@@ -69,6 +70,7 @@ setTimeout(runSimulation, 1000);
   // console.log(board)
   return (
     <>
+    <div class="btn">
     <button
     onClick={() => { //onclick added to toggle button between two button settings
       setPlayGod(!playgod);
@@ -98,6 +100,7 @@ setBoard(generateEmptyBoard())
   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
     <button>TRY THIS</button>
 </a>
+</div>
 
 
     <div style={{
