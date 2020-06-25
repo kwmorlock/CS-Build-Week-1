@@ -130,7 +130,7 @@ const [open, setOpen] = React.useState(false)
     <button className="button" onClick={() => setOpen(true)}>
 Rules/About      </button>
       <Modal open={open} onClose={() => setOpen(false)} center>
-      <div>
+      <div class="modal">
       <h1>Rules</h1>
       <h1>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</h1>
 <h1>Any live cell with two or three live neighbours lives on to the next generation.</h1>
