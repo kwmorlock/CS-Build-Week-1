@@ -4,9 +4,25 @@ import React, {useState, useCallback, useRef} from 'react';
 // import HomeScreen from "./components/homescreen";
 import produce from 'immer'; //
 import '../src/components/homescreen.css';
+import {surprise} from "./patterns/surprise";
+import {extra} from "./patterns/extra"
+
+
 
 const numberRows = 75;
 const numberColumns = 75;
+
+const speeds = {
+  slow: 700,
+  normal: 350,
+  fast: 50
+}
+
+const patterns = {
+  surprise: surprise,
+  extra: extra
+}
+
 
 const operations = [ //for all the spaces surrounding a space
   [0, 1],
@@ -33,6 +49,13 @@ function App() {
   const [board, setBoard] = useState(() => {
     return generateEmptyBoard()
   })
+
+  console.log(board)
+
+  const [speed, setSpeed] = useState("normal")
+
+  const speedRef = useRef(speed)
+  speedRef.current = speed;
 
   const [generations, setGenerations] = useState(0); //for generations
   const generationsRef = useRef(generations); //using useRef hook to current generation value
@@ -75,9 +98,25 @@ setBoard((g) => {
   }
 });
 });
-setTimeout(runSimulation, 2000);
+setTimeout(runSimulation, speeds[speedRef.current]);
   }, [])
   // console.log(board)
+
+
+const handleSpeed = e => {
+  setSpeed(e.target.value)
+}
+
+const patternChange = e => { //creating change handler for target value, if name of value is none, have it geenrate an empty board, else ifits not none we change the value to our pattern
+  let name = e.target.value
+  if(name === "None") {
+    setBoard(generateEmptyBoard())
+  }
+  else {
+    setBoard(patterns[name])
+  }
+}
+
   return (
     <>
     <h1>Generations: {generations}</h1>
@@ -115,6 +154,26 @@ setBoard(generateEmptyBoard())
 
   </button>
 
+  <span>
+    <label> pattern: </label>
+      <select name = "patterns" id = "patterns" onChange ={patternChange} >
+        <option value="None">none </option>
+        <option value="surprise">surprise</option>
+        <option value="extra">extra</option>
+      </select>
+   
+  </span>
+
+  <span>
+    <label> Speed: </label>
+      <select onChange ={handleSpeed} >
+        <option value="normal">Normal </option>
+        <option value="fast">fast</option>
+        <option value="slow">slow</option>
+      </select>
+   
+  </span>
+
   {/* <button onClick ={() =>{ 
   
     
@@ -125,6 +184,8 @@ setBoard(generateEmptyBoard())
   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
     <button>TRY THIS</button>
 </a>
+
+
 </div>
 
 
@@ -137,10 +198,13 @@ setBoard(generateEmptyBoard())
          <div
          key={`${r}-${c}`} //needs key for array, its ok to use the index as a key, because we arent going to shift the divs
           onClick={() => {
-            const newBoard = produce(board, boardcopy => { //boardcopy we can alter in anyway we want
-              boardcopy[r][c] = board[r][c] ? 0 : 1; //this allows a toggle, so if alive can make dead
-            })
-          setBoard(newBoard)
+            if(!playgod){
+              const newBoard = produce(board, boardcopy => { //boardcopy we can alter in anyway we want
+                boardcopy[r][c] = board[r][c] ? 0 : 1; //this allows a toggle, so if alive can make dead
+              })
+              setBoard(newBoard)
+            }
+      
           }}
          style={{
             width:20,
@@ -151,6 +215,19 @@ setBoard(generateEmptyBoard())
           />))
       )}
  {/* <HomeScreen /> */}
+    </div>
+    <div>
+      <h1>Rules</h1>
+      <h1>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</h1>
+<h1>Any live cell with two or three live neighbours lives on to the next generation.</h1>
+<h1>Any live cell with more than three live neighbours dies, as if by overpopulation.</h1>
+<h1>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</h1>
+<h1>About Conway's Game of Life</h1>
+<h1>This game is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</h1>
+<h1>This game has no players, and evolves from a starting state.</h1>
+<h1>This game is turing complete meaning it can simulate a turing machine. </h1>
+<h1>A turing machine is a mathemcatical model of computation</h1>
+<h1>that defines an abstract machine created by Alan Turing.</h1>
     </div>
     </>
   );
