@@ -2,10 +2,12 @@ import React, {useState, useCallback, useRef} from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 // import HomeScreen from "./components/homescreen";
-import produce from 'immer'; //
+import produce from 'immer'; //so we can use produce for immutable change to create a new grid
 import '../src/components/homescreen.css';
 import {surprise} from "./patterns/surprise";
-import {extra} from "./patterns/extra"
+import {extra} from "./patterns/extra";
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 
 
@@ -117,11 +119,31 @@ const patternChange = e => { //creating change handler for target value, if name
   }
 }
 
+const [open, setOpen] = React.useState(false)
+
   return (
     <>
     <h1>Generations: {generations}</h1>
 
     <div class="btn">
+
+    <button className="button" onClick={() => setOpen(true)}>
+Rules/About      </button>
+      <Modal open={open} onClose={() => setOpen(false)} center>
+      <div>
+      <h1>Rules</h1>
+      <h1>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</h1>
+<h1>Any live cell with two or three live neighbours lives on to the next generation.</h1>
+<h1>Any live cell with more than three live neighbours dies, as if by overpopulation.</h1>
+<h1>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</h1>
+<h1>About Conway's Game of Life</h1>
+<h1>This game is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</h1>
+<h1>This game has no players, and evolves from a starting state.</h1>
+<h1>This game is turing complete meaning it can simulate a turing machine. </h1>
+<h1>A turing machine is a mathemcatical model of computation</h1>
+<h1>that defines an abstract machine created by Alan Turing.</h1>
+    </div>
+      </Modal>
     <button
     onClick={() => { //onclick added to toggle button between two button settings
       setPlayGod(!playgod);
@@ -216,7 +238,7 @@ setBoard(generateEmptyBoard())
       )}
  {/* <HomeScreen /> */}
     </div>
-    <div>
+    {/* <div>
       <h1>Rules</h1>
       <h1>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</h1>
 <h1>Any live cell with two or three live neighbours lives on to the next generation.</h1>
@@ -228,7 +250,11 @@ setBoard(generateEmptyBoard())
 <h1>This game is turing complete meaning it can simulate a turing machine. </h1>
 <h1>A turing machine is a mathemcatical model of computation</h1>
 <h1>that defines an abstract machine created by Alan Turing.</h1>
-    </div>
+    </div> */}
+
+ 
+
+    
     </>
   );
 }
